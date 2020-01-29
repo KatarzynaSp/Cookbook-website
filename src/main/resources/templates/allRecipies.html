@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Książka kucharska</title>
+    <!--    <link rel="stylesheet" href="style.css">-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>
+
+</head>
+<body>
+<div class="banner">
+    <h1>Książka kucharska</h1>
+</div>
+
+<div>
+    <a href="/">Wróć na stronę główną</a><br/>
+</div>
+
+<ul>
+    <li th:each="recipe: ${allRecipies}">
+        <a th:href="@{'/recipe/' + ${recipe.id}}">
+            <p th:text="${recipe.name}"></p>
+        </a></li>
+
+</ul>
+
+
+</body>
+</html>
