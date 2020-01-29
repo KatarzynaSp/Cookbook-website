@@ -21,6 +21,7 @@ public class HomeController {
         this.ingredientRepository = ingredientRepository;
     }
 
+
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("recipies", recipeRepository.findAll().stream().limit(5).collect(Collectors.toList()));

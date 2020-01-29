@@ -60,6 +60,7 @@ public class RecipeController {
         Recipe recipe = new Recipe();
         recipe.setIngredients(ingredients);
 
+
         model.addAttribute("recipe", recipe);
         model.addAttribute("ingredients", ingredients);
         return "add";
@@ -67,8 +68,13 @@ public class RecipeController {
 
     @PostMapping("/recipe/save")
     public String saveRecipe(@ModelAttribute Recipe recipe, Model model) {
+
+
         ingredientRepository.saveAll(recipe.getIngredients());
+        recipe.getIngredients()
+                .forEach(ingredient -> ingredient.setRecipe(recipe));
         recipeRepository.save(recipe);
+
         model.addAttribute("allRecipies", recipeRepository.findAll());
         return "redirect:/allRecipies";
     }
