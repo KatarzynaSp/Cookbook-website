@@ -1,6 +1,8 @@
 .content {
+    background-color: azure;
     width: 100%;
-    margin: 3%;
+    /*margin: 3%;*/
+    padding: 20px;
     position: center;
 
 }

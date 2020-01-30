@@ -28,6 +28,20 @@ public class RecipeController {
         this.ingredientRepository = ingredientRepository;
     }
 
+
+    @GetMapping("/category/{category_Id}")
+    public String category(Model model, @PathVariable Long category_Id) {
+        List<Recipe> recipiesByCategory = recipeRepository.findAllByCategory_Id(category_Id);
+
+        if (recipiesByCategory != null) {
+            model.addAttribute("recipiesByCategory", recipiesByCategory);
+            return "category";
+        } else {
+            return "redirect:/";
+        }
+    }
+
+
     @GetMapping("/recipe/delete/{id}")
     public String delete(@PathVariable Long id) {
         recipeRepository.deleteById(id);

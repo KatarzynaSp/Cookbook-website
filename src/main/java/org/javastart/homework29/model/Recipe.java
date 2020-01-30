@@ -18,8 +18,16 @@ public class Recipe {
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<Ingredient> ingredients = new ArrayList<>();
 
+    @ManyToOne
+    private Category category;
+
+//    @OneToMany(mappedBy = "like", cascade = CascadeType.ALL,  orphanRemoval = true)
+//    private Map<Long, LikeIt> likeBox = new HashMap<Long, LikeIt>();
+
+
     public Recipe() {
     }
+
 
     public Recipe(String name, String description, String url, List<Ingredient> ingredients) {
         this.name = name;
@@ -72,6 +80,22 @@ public class Recipe {
     public void setUrl(String url) {
         this.url = url;
     }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+//
+//    public Map<Long, LikeIt> getLikeBox() {
+//        return likeBox;
+//    }
+//
+//    public void setLikeBox(Map<Long, LikeIt> likeBox) {
+//        this.likeBox = likeBox;
+//    }
 
     @Override
     public String toString() {

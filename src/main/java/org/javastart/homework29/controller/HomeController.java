@@ -24,7 +24,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model) {
-        model.addAttribute("recipies", recipeRepository.findAll().stream().limit(5).collect(Collectors.toList()));
+        model.addAttribute("recipies", recipeRepository.findAll().stream().limit(8).collect(Collectors.toList()));
         return "home";
     }
 }

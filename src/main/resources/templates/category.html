@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Książka kucharska</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css"/>
+</head>
+
+<div th:replace="fragments :: header"></div>
+
+<body>
+
+<div class="background">
+
+    <ul class="nav nav-tabs">
+        <li class="col-lg-2"><a href="/recipe/add" class="list-group-item active">Dodaj nowy przepis</a></li>
+        <li class="col-lg-2"><a href="/allRecipies" class="list-group-item active">Wszystkie przepisy</a></li>
+        <li class="col-lg-2"><a href="/category/" class="list-group-item active">Kategorie</a></li>
+        <li class="col-lg-2"><a href="/" class="list-group-item active">Wróć na stronę główną</a></li>
+    </ul>
+
+
+</div>
+<tr th:each="recipe: ${recipiesByCategory}">
+    <td th:text="${recipe.getName()}"></td>
+    Kategoria:
+    <td th:text="${recipe.category}"></td>
+    <td th:text="${recipe.description}"></td>
+    <td th:text="${recipe.ingredients}"></td>
+    <!--            <td th:text="${car.color}"></td>-->
+    <!--            <td th:text="|${car.endDate}|"></td>-->
+</tr>
+</tbody>
+</table>
+
+
+<h2 th:text="${category.getUrl()}"></h2>
+<h2 th:text="${category.getName()}"></h2>
+<p th:text="${category.getDescription()}"></p>
+
+
+<!--    <ul>-->
+<!--        <li th:each="recipe: ${allByCategory}">-->
+<!--            <a th:href="@{'/recipe/' + ${recipe.getCategory()}}">-->
+<!--                <p th:text="${recipe.name}"></p>-->
+<!--            </a></li>-->
+
+<!--    </ul>-->
+
+<!--    -->
+<!--    -->
+<!--    -->
+<!--    -->
+<!--    <div class="row">-->
+<!--        <div class=" col-md-3" style="margin: 5px">-->
+<!--            <img th:src="${recipe.url}" style="width: 400px; max-height: 300px" alt="zdj"></div>-->
+<!--        <div class=" col-md-7" style="margin: 5px">-->
+
+<!--            <h3> Składniki: </h3>-->
+<!--            <ul>-->
+<!--                <li th:each="ingredient: ${ingredients}"-->
+<!--                    th:text="|${ingredient.name} ${ingredient.amount}|">-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--            </br>-->
+
+<!--            <h3> Wykonanie: </h3>-->
+<!--            <p th:text="${recipe.description}"></p>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+</body>
+</html>

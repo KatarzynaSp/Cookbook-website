@@ -25,6 +25,13 @@
     <input type="text" th:field="*{name}" placeholder="nazwa przepisu"/><br/>
     <textarea rows="5" th:field="*{description}" placeholder="wykonanie przepisu"></textarea><br/>
     <input type="text" th:field="*{url}" placeholder="dodaj url zdjęcia"/><br/>
+    <select th:field="*{category}" placeholder="dodaj kategorię">
+        <option th:each="category: ${T(org.javastart.homework29.model.Category).values()}"
+                th:text="${category.displayName}"
+                th:value="${category.name()}">
+
+        </option>
+    </select><br/>
 
     <table>
         <thead>
