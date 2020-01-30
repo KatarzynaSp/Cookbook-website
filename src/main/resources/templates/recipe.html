@@ -15,17 +15,24 @@
 <div class="background">
 
     <ul class="nav nav-tabs">
-        <li class="col-lg-2"><a href="/recipe/add" class="list-group-item active">Dodaj nowy przepis</a></li>
-        <li class="col-lg-2"><a href="/allRecipies" class="list-group-item active">Wszystkie przepisy</a></li>
-        <li class="col-lg-2"><a href="#" class="list-group-item active">Kategorie</a></li>
-        <li class="col-lg-2"><a th:href="|/recipe/delete/ + ${recipe.id}|" class="list-group-item active">Usuń
-            przepis</a>
-        </li>
-        <li class="col-lg-2"><a href="/" class="list-group-item active">Wróć na stronę główną</a></li>
+        <li class="col-lg-3"><a href="/recipe/add" class="list-group-item active">Dodaj nowy przepis</a></li>
+        <li class="col-lg-3"><a href="/allRecipies" class="list-group-item active">Wszystkie przepisy</a></li>
+        <li class="col-lg-3"><a href="#" class="list-group-item active">Kategorie</a></li>
+        <li class="col-lg-3"><a href="/" class="list-group-item active">Wróć na stronę główną</a></li>
     </ul>
 
-    <h2 style="text-align: center" th:text="${recipe.name}"></h2>
+    <ul class="nav nav-tabs" style="background-color: lightblue">
+        <li class="col-lg-2"><h4>Kategorie: </h4></li>
 
+        <li class="col-lg-2"><a href="/category/?category_Id=1"><h4>Sniadania</h4></a></li>
+        <li class="col-lg-2"><a href="/category/?category_Id=2"><h4>Zupy</h4></a></li>
+        <li class="col-lg-2"><a href="/category/?category_Id=3"><h4>Obiady</h4></a></li>
+        <li class="col-lg-2"><a href="/category/?category_Id=4"><h4>Przekąski</h4></a></li>
+        <li class="col-lg-2"><a href="/category/?category_Id=5"><h4>Desery</h4></a></li>
+    </ul>
+    </br></br>
+
+    <h2 style="text-align: center" th:text="${recipe.name}"></h2>
 
     <div class="row">
         <div class=" col-md-3" style="margin: 5px">
@@ -42,8 +49,15 @@
 
             <h3> Wykonanie: </h3>
             <p th:text="${recipe.description}"></p>
+            <h3> Kategoria: </h3>
+            <p th:text="${recipe.getCategory().name}"></p>
         </div>
     </div>
+
+    <ul class="nav nav-tabs">
+        <li class="col-lg-12"><a th:href="|/recipe/delete/ + ${recipe.id}|" class="list-group-item active">Usuń
+            przepis</a></li>
+    </ul>
 </div>
 
 </body>

@@ -1,16 +1,15 @@
 package org.javastart.homework29.controller;
 
+import org.javastart.homework29.model.Category;
 import org.javastart.homework29.model.Ingredient;
 import org.javastart.homework29.model.Recipe;
+import org.javastart.homework29.repository.CategoryRepository;
 import org.javastart.homework29.repository.IngredientRepository;
 import org.javastart.homework29.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,20 +20,25 @@ public class RecipeController {
 
     private RecipeRepository recipeRepository;
     private IngredientRepository ingredientRepository;
+    private CategoryRepository categoryRepository;
+
 
     @Autowired
-    public RecipeController(RecipeRepository recipeRepository, IngredientRepository ingredientRepository) {
+    public RecipeController(RecipeRepository recipeRepository, IngredientRepository ingredientRepository, CategoryRepository categoryRepository) {
         this.recipeRepository = recipeRepository;
         this.ingredientRepository = ingredientRepository;
+        this.categoryRepository = categoryRepository;
     }
 
 
-    @GetMapping("/category/{category_Id}")
-    public String category(Model model, @PathVariable Long category_Id) {
-        List<Recipe> recipiesByCategory = recipeRepository.findAllByCategory_Id(category_Id);
-
-        if (recipiesByCategory != null) {
+    @GetMapping("/category")
+    public String RecipiesBycategory(Model model, @RequestParam Long category_Id) {
+        List<Recipe> recipiesByCategory;
+        if (category_Id != null) {
+            recipiesByCategory = recipeRepository.findRecipesByCategory_Id(category_Id);
+            Category categoriesById = categoryRepository.findCategoriesById(category_Id);
             model.addAttribute("recipiesByCategory", recipiesByCategory);
+            model.addAttribute("category", categoriesById);
             return "category";
         } else {
             return "redirect:/";
@@ -71,12 +75,13 @@ public class RecipeController {
         for (int i = 1; i <= 5; i++) {
             ingredients.add(new Ingredient());
         }
+        List<Category> categories = categoryRepository.findAll();
         Recipe recipe = new Recipe();
         recipe.setIngredients(ingredients);
 
-
         model.addAttribute("recipe", recipe);
         model.addAttribute("ingredients", ingredients);
+        model.addAttribute("categories", categories);
         return "add";
     }
 

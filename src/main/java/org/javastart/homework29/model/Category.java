@@ -17,6 +17,9 @@ public class Category {
     @OneToMany(mappedBy = "category", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<Recipe> recipies;
 
+    public Category() {
+    }
+
     public Category(String name, String description, String url, List<Recipe> recipies) {
         this.name = name;
         this.description = description;

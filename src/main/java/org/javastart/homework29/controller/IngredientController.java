@@ -17,5 +17,4 @@ public class IngredientController {
         this.recipeRepository = recipeRepository;
         this.ingredientRepository = ingredientRepository;
     }
-
 }

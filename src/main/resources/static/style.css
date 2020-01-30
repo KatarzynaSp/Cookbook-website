@@ -24,7 +24,8 @@
 }
 
 .background {
-    background-color: cornflowerblue;
+    background-color: thistle;
     width: 100%;
-    margin: 3%;
+    padding: 20px;
+    padding-bottom: 300px;
 }
