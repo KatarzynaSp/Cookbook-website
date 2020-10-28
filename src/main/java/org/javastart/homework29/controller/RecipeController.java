@@ -1,100 +1,70 @@
 package org.javastart.homework29.controller;
 
-import org.javastart.homework29.model.Category;
+import org.javastart.homework29.dto.CategoryDto;
+import org.javastart.homework29.dto.RecipeDto;
+import org.javastart.homework29.form.RecipeForm;
 import org.javastart.homework29.model.Ingredient;
-import org.javastart.homework29.model.Recipe;
-import org.javastart.homework29.repository.CategoryRepository;
-import org.javastart.homework29.repository.IngredientRepository;
-import org.javastart.homework29.repository.RecipeRepository;
+import org.javastart.homework29.service.CategoryService;
+import org.javastart.homework29.service.IngredientService;
+import org.javastart.homework29.service.RecipeSevice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
-
+@RequestMapping("/recipe")
 @Controller
 public class RecipeController {
 
-    private RecipeRepository recipeRepository;
-    private IngredientRepository ingredientRepository;
-    private CategoryRepository categoryRepository;
-
+    private RecipeSevice recipeSevice;
+    private IngredientService ingredientService;
+    private CategoryService categoryService;
 
     @Autowired
-    public RecipeController(RecipeRepository recipeRepository, IngredientRepository ingredientRepository, CategoryRepository categoryRepository) {
-        this.recipeRepository = recipeRepository;
-        this.ingredientRepository = ingredientRepository;
-        this.categoryRepository = categoryRepository;
+    public RecipeController(RecipeSevice recipeSevice, IngredientService ingredientService, CategoryService categoryService) {
+        this.recipeSevice = recipeSevice;
+        this.ingredientService = ingredientService;
+        this.categoryService = categoryService;
     }
 
-
-    @GetMapping("/category")
-    public String RecipiesBycategory(Model model, @RequestParam Long category_Id) {
-        List<Recipe> recipiesByCategory;
-        if (category_Id != null) {
-            recipiesByCategory = recipeRepository.findRecipesByCategory_Id(category_Id);
-            Category categoriesById = categoryRepository.findCategoriesById(category_Id);
-            model.addAttribute("recipiesByCategory", recipiesByCategory);
-            model.addAttribute("category", categoriesById);
-            return "category";
-        } else {
-            return "redirect:/";
-        }
-    }
-
-
-    @GetMapping("/recipe/delete/{id}")
+    @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id) {
-        recipeRepository.deleteById(id);
+        recipeSevice.delete(id);
         return "redirect:/";
     }
 
-    @GetMapping("/allRecipies")
+    @GetMapping("/all")
     public String findAll(Model model) {
-        List<Recipe> allRecipies = recipeRepository.findAll();
-        model.addAttribute("allRecipies", allRecipies);
-        return "allRecipies";
+        List<RecipeDto> allDto = recipeSevice.findAll();
+        List<CategoryDto> categories = categoryService.findCategories();
+        model.addAttribute("allDto", allDto);
+        model.addAttribute("categories", categories);
+        return "all";
     }
 
-    @GetMapping("/recipe/{id}")
+    @GetMapping("/{id}")
     public String findById(@PathVariable Long id, Model model) {
-        Recipe recipe = recipeRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException());
-        List<Ingredient> ingredients = recipe.getIngredients();
-        model.addAttribute("recipe", recipe);
+        RecipeDto recipeDto = recipeSevice.findById(id);
+        List<Ingredient> ingredients = recipeDto.getIngredients();
+        model.addAttribute("recipeDto", recipeDto);
         model.addAttribute("ingredients", ingredients);
         return "recipe";
     }
 
-    @GetMapping("/recipe/add")
+    @GetMapping("/add")
     public String saveRecipe(Model model) {
-        List<Ingredient> ingredients = new ArrayList<>();
-        for (int i = 1; i <= 5; i++) {
-            ingredients.add(new Ingredient());
-        }
-        List<Category> categories = categoryRepository.findAll();
-        Recipe recipe = new Recipe();
-        recipe.setIngredients(ingredients);
-
-        model.addAttribute("recipe", recipe);
-        model.addAttribute("ingredients", ingredients);
+        RecipeDto recipeDto = recipeSevice.addRecipe();
+        List<CategoryDto> categories = categoryService.findCategories();
+        model.addAttribute("recipe", recipeDto);
         model.addAttribute("categories", categories);
         return "add";
     }
 
-    @PostMapping("/recipe/save")
-    public String saveRecipe(@ModelAttribute Recipe recipe, Model model) {
-
-
-        ingredientRepository.saveAll(recipe.getIngredients());
-        recipe.getIngredients()
-                .forEach(ingredient -> ingredient.setRecipe(recipe));
-        recipeRepository.save(recipe);
-
-        model.addAttribute("allRecipies", recipeRepository.findAll());
-        return "redirect:/allRecipies";
+    @PostMapping("/save")
+    public String saveRecipe(@ModelAttribute RecipeForm recipeForm) {
+        recipeSevice.saveRecipe(recipeForm);
+       return "redirect:/recipe/all";
     }
 }

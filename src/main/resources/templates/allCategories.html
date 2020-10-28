@@ -13,13 +13,18 @@
 <div class="background">
     <div th:replace="fragments :: buttons"></div>
 
+    </br>
     <div class="row">
-        <a th:href="@{'/recipe/' + ${recipe.id}}" th:each="recipe: ${recipies}">
-            <div class="col-md-6" style="margin: 5px">
-                <h5 th:text="${recipe.name}"></h5>
-                <img th:src="${recipe.url}" style="width: 400px; height: 300px" alt="zdj">
-            </div>
-        </a>
+        <div class=" col-md-4" style="margin: 5px">
+            <h3> Wszystkie kategorie: </h3></div>
+        <div class=" col-md-7" style="margin: 5px">
+            <ul>  </br>  </br>
+                <li th:each="category: ${categories}">
+                    <a th:href="@{'/categories/' + ${category.id}}">
+                        <p th:text="${category.name}"></p>
+                    </a></li>
+            </ul>
+        </div>
     </div>
 </div>
 </body>

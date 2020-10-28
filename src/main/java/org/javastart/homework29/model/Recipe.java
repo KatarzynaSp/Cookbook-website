@@ -88,14 +88,7 @@ public class Recipe {
     public void setCategory(Category category) {
         this.category = category;
     }
-//
-//    public Map<Long, LikeIt> getLikeBox() {
-//        return likeBox;
-//    }
-//
-//    public void setLikeBox(Map<Long, LikeIt> likeBox) {
-//        this.likeBox = likeBox;
-//    }
+
 
     @Override
     public String toString() {
