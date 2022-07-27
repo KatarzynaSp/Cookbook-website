@@ -1,0 +1,142 @@
+{
+	"id": "6b071f33-8afe-4166-ae27-bf4646c20f54",
+	"name": "cookbook",
+	"timestamp": "2022-07-27T17:37:28.345Z",
+	"collection_id": "10157121-e1a48bbd-6e96-48c1-bcc5-1b48d81e7485",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 4,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "b6f0e4f7-2279-4615-b3bc-05f16cf212f7",
+			"name": "findCategory1",
+			"url": "http://localhost:8080/category/1",
+			"time": 25,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"response is ok": true
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				25
+			],
+			"allTests": [
+				{
+					"response is ok": true
+				}
+			]
+		},
+		{
+			"id": "cc77cb78-39e9-489a-9948-d02ee852a0b0",
+			"name": "findAllCategories",
+			"url": "http://localhost:8080/category/categories",
+			"time": 9,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"response is ok": true
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"response is ok": true
+				}
+			]
+		},
+		{
+			"id": "02c294bc-d8de-4ad7-a4ee-bb48c2ac3cf8",
+			"name": "findRecipe4",
+			"url": "http://localhost:8080/recipe/4",
+			"time": 15,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"response is ok": true
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				15
+			],
+			"allTests": [
+				{
+					"response is ok": true
+				}
+			]
+		},
+		{
+			"id": "289d5225-e9b8-4ba0-9f22-7ce8027b745f",
+			"name": "findFormAddRecipe",
+			"url": "http://localhost:8080/recipe/add?",
+			"time": 21,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				21
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 70,
+	"collection": {
+		"requests": [
+			{
+				"id": "b6f0e4f7-2279-4615-b3bc-05f16cf212f7",
+				"method": "GET"
+			},
+			{
+				"id": "cc77cb78-39e9-489a-9948-d02ee852a0b0",
+				"method": "GET"
+			},
+			{
+				"id": "02c294bc-d8de-4ad7-a4ee-bb48c2ac3cf8",
+				"method": "GET"
+			},
+			{
+				"id": "289d5225-e9b8-4ba0-9f22-7ce8027b745f",
+				"method": "GET"
+			}
+		]
+	}
+}
