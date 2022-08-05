@@ -1,17 +1,20 @@
-Treść zadania:
+Repozytorium niniejsze obejmuje projekt strony internetowej „Książka Kucharska”.
+[Cel edukacyjny: 
+Obecnie - trening procesu testowania, 
+Wcześniej - programowanie w języku Java].
 
-Stwórz aplikację książki kucharskiej (wykorzystując Spring MVC, Data i Thymeleafa. Do przechowywania danych wykorzystaj bazę danych H2.), w której będą następujące funkcjonalności:
-- możliwość dodawania nowego przepisu
-- możliwość edycji przepisu
-- możliwość usunięcia przepisu
-- wyświetlanie listy wszystkich przepisów
-- wyświetlanie przepisów według kategorii (każda strona kategorii oprócz listy przepisów powinna mieć krótki opis i jakiś obrazek wyróżniający)
-- wyświetlanie pojedynczego przepisu
-- możliwość kliknięcia "lubię to" przy przepisie
-- wyświetlanie listy najlepszych przepisów (tych, które mają najwięcej polubień)
-Zadbaj o atrakcyjną szatę graficzną aplikacji, przygotuj zestaw danych testowych, które będą wstawiane do bazy danych przy starcie aplikacji. Aplikację zbuduj w taki sposób, aby korzystanie z niej było intuicyjne - np. nie wrzucaj wszystkich danych i formularzy na stronę główną.
+Celem głównym powstania tej strony jest budowanie społeczności wokół tematów kulinarnych oraz gromadzenie ciekawych przepisów kulinarnych. Osobom, które dopiero zaczynają bawić się w gotowanie serwis umożliwi gromadzenie przepisów wg kategorii oraz dzielenie się własnymi odkryciami z pozostałymi. Budując społeczność kulinarną, gromadzona jest baza potencjalnych klientów na organizowane w przyszłości warsztaty oraz potencjalnych czytelników książki, wydanej na podstawie zgromadzonych przepisów.
 
-[Zadanie jest nie skończone, ale część z funkcjonalności działa.]
+Strona umożliwiać będzie (docelowo):
+• Możliwość przeglądania strony jako niezalogowany użytkownik.
+• Wyszukiwanie przepisów w kategoriach: śniadania, obiady, zupy, przekąski.
+• Rejestrację użytkowników – założenie własnego konta, z możliwością
+dodawania/usuwania/edycji przepisów oraz gromadzenie najciekawszych przepisów.
+• Korzystanie z forum użytkowników w celu dodawania porad kulinarnych i wymiany opinii.
 
-@ TESTY
-Strona internetowa jest obecnie testowana (w ramach praktyki jako tester oprogramowania). Wszystkie testalia znajdują się w folderze Dokumentacja testowa.
+Wykorzystane technologie: Java, Spring MVC, Data i Thymeleaf. 
+Do przechowywania danych wykorzystano bazę danych H2.
+
+Uwaga:
+Strona jest w trakcie rozbudowy, ale część z funkcjonalności działa.
+Strona internetowa jest obecnie testowana. Wszystkie testalia znajdują się w folderze Dokumentacja testowa.
